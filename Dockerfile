@@ -1,12 +1,20 @@
-FROM avelino/docker-opps:latest
+FROM debian:wheezy
 MAINTAINER Thiago Avelino <avelino@filmow.com>
 
-# set pt-br
+# make the "pt_BR.UTF-8" locale so postgres will be utf-8 enabled by default
 RUN aptitude update \
 	&& aptitude install -y locales \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i pt_BR -c -f UTF-8 -A /usr/share/locale/locale.alias pt_BR.UTF-8
 ENV LANG pt_BR.utf8
+
+# install packages
+RUN apt-get update \
+	&& apt-get install -y aptitude \
+	&& aptitude upgrade -yq \
+	&& aptitude -yq install supervisor git-core build-essential libc6-dev libexpat1-dev gettext libz-dev libssl-dev libevent-dev libcurl4-nss-dev libfreetype6-dev postgresql-client libpq-dev sqlite3 libxslt1-dev libxml2-dev libjpeg62-dev zlib1g-dev cron \
+	&& aptitude -yq install python python-dev python-setuptools python-software-properties python-psycopg2 python-numpy python-opencv python-pip python-lxml \
+	&& rm -rf /var/lib/apt/lists/*
 
 # install ruby + lessc
 ENV RUBY_MAJOR 2.0
