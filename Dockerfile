@@ -1,6 +1,10 @@
 FROM debian:wheezy
 MAINTAINER Thiago Avelino <avelino@filmow.com>
 
+# Used aptitude
+RUN apt-get update \
+	&& apt-get install -y aptitude
+
 # make the "pt_BR.UTF-8" locale so postgres will be utf-8 enabled by default
 RUN aptitude update \
 	&& aptitude install -y locales \
@@ -9,9 +13,7 @@ RUN aptitude update \
 ENV LANG pt_BR.utf8
 
 # install packages
-RUN apt-get update \
-	&& apt-get install -y aptitude \
-	&& aptitude upgrade -yq \
+RUN aptitude upgrade -yq \
 	&& aptitude -yq install supervisor git-core build-essential libc6-dev libexpat1-dev gettext libz-dev libssl-dev libevent-dev libcurl4-nss-dev libfreetype6-dev postgresql-client libpq-dev sqlite3 libxslt1-dev libxml2-dev libjpeg62-dev zlib1g-dev cron \
 	&& aptitude -yq install python python-dev python-setuptools python-software-properties python-psycopg2 python-numpy python-opencv python-pip python-lxml \
 	&& rm -rf /var/lib/apt/lists/*
