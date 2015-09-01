@@ -8,7 +8,7 @@ RUN aptitude update \
     && localedef -i pt_BR -c -f UTF-8 -A /usr/share/locale/locale.alias pt_BR.UTF-8
 ENV LANG pt_BR.utf8
 
-# install lessc
+# install ruby + lessc
 ENV RUBY_MAJOR 2.0
 ENV RUBY_VERSION 2.0.0-p647
 ENV RUBY_DOWNLOAD_SHA256 c88aaf5b4ec72e2cb7d290ff854f04d135939f6134f517002a9d65d5fc5e5bec
