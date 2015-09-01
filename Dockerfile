@@ -14,7 +14,7 @@ ENV LANG pt_BR.utf8
 
 # install packages
 RUN aptitude upgrade -yq \
-	&& aptitude -yq install supervisor git-core build-essential libc6-dev libexpat1-dev gettext libz-dev libssl-dev libevent-dev libcurl4-nss-dev libfreetype6-dev postgresql-client libpq-dev sqlite3 libxslt1-dev libxml2-dev libjpeg62-dev zlib1g-dev cron \
+	&& aptitude -yq install supervisor git-core build-essential libc6-dev libexpat1-dev gettext libz-dev libssl-dev libevent-dev libcurl4-nss-dev libfreetype6-dev postgresql-client libpq-dev sqlite3 libxslt1-dev libxml2-dev libjpeg62-dev zlib1g-dev cron curl curl-dev \
 	&& aptitude -yq install python python-dev python-setuptools python-software-properties python-psycopg2 python-numpy python-opencv python-pip python-lxml \
 	&& rm -rf /var/lib/apt/lists/*
 
