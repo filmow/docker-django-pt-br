@@ -25,7 +25,7 @@ ENV RUBY_DOWNLOAD_SHA256 c88aaf5b4ec72e2cb7d290ff854f04d135939f6134f517002a9d65d
 ENV RUBYGEMS_VERSION 2.4.8
 RUN echo 'install: --no-document\nupdate: --no-document' > "$HOME/.gemrc"
 RUN apt-get update \
-	&& apt-get install -y bison libgdbm-dev ruby curl \
+	&& apt-get install -y bison libgdbm-dev ruby curl make build-essential \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /usr/src/ruby \
 	&& curl -fSL -o ruby.tar.gz "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.gz" \
