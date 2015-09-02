@@ -14,7 +14,7 @@ ENV LANG pt_BR.utf8
 
 # install packages
 RUN aptitude upgrade -yq \
-	&& aptitude -yq install supervisor git-core build-essential libc6-dev libexpat1-dev gettext libz-dev libssl-dev libevent-dev libcurl4-nss-dev libfreetype6-dev postgresql-client libpq-dev sqlite3 libxslt1-dev libxml2-dev libjpeg62-dev zlib1g-dev cron curl curl-dev \
+	&& aptitude -yq install supervisor git-core build-essential libc6-dev libexpat1-dev gettext libz-dev libssl-dev libevent-dev libcurl4-nss-dev libcurl4-dev libfreetype6-dev postgresql-client libpq-dev sqlite3 libxslt1-dev libxml2-dev libjpeg62-dev zlib1g-dev cron \
 	&& aptitude -yq install python python-dev python-setuptools python-software-properties python-psycopg2 python-numpy python-opencv python-pip python-lxml \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -25,7 +25,7 @@ ENV RUBY_DOWNLOAD_SHA256 c88aaf5b4ec72e2cb7d290ff854f04d135939f6134f517002a9d65d
 ENV RUBYGEMS_VERSION 2.4.8
 RUN echo 'install: --no-document\nupdate: --no-document' > "$HOME/.gemrc"
 RUN apt-get update \
-	&& apt-get install -y bison libgdbm-dev ruby \
+	&& apt-get install -y bison libgdbm-dev ruby curl \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /usr/src/ruby \
 	&& curl -fSL -o ruby.tar.gz "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.gz" \
